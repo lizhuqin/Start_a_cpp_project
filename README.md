@@ -27,13 +27,22 @@ cd build
 cmake .. # cmake作用在根目录的CMakeLists.txt
 make # Ubuntu
 ```
-也可以直接在根目录执行：
-```shell
-cmake -S . -B build # 自动创建build目录并生成项目
-cmake --build build # 编译，相当于cd build+make
-```
 
 ## 测试用例与GoogleTest
 1. 在tests文件夹里编写测试所用的.cpp文件和CMakeLists.txt构建文件。注意接入第三方库的方法。
 2. 学习**GoogleTest**的相关使用！
 3. 在根目录的CMakeLists.txt文件中添加测试目录tests。注意：预存项目根目录变量以备后续使用。
+4. 两点优化：
+定义option选择是否编译测试代码
+在子模块的CMakeLists.txt中可以将头文件目录与lib库绑定，到当前CMake路径下寻找头文件，如此在C++代码中include时可以不加头文件路径
+5. `set(BUILD_GMOCK OFF)`可以关闭GoogleTest库的GMOCK功能，变量会自动传递到下一级CMakeLists.txt中
+
+## cmake的跨平台
+1. 自动检测环境生成对应的编译类型，使用`cmake --help`查看可生成的编译类型
+2. `-G"Ninja"`指定生成的编译类型
+3. 跨平台编译：
+```shell
+cmake -S . -B build # 自动创建build目录并生成项目
+cmake --build build # 编译，在Ubuntu相当于cd build+make，会按照平台执行相应的编译类型
+cmake --install build # 安装脚本
+```

@@ -1,4 +1,4 @@
-#include "hello_world/hello_world.h"
+#include "hello_world.h"
 #include "for_test/for_test.h"
 #include <iostream>
 
