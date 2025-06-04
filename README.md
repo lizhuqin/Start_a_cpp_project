@@ -32,3 +32,8 @@ make # Ubuntu
 cmake -S . -B build # 自动创建build目录并生成项目
 cmake --build build # 编译，相当于cd build+make
 ```
+
+## 测试用例与GoogleTest
+1. 在tests文件夹里编写测试所用的.cpp文件和CMakeLists.txt构建文件。注意接入第三方库的方法。
+2. 学习**GoogleTest**的相关使用！
+3. 在根目录的CMakeLists.txt文件中添加测试目录tests。注意：预存项目根目录变量以备后续使用。
